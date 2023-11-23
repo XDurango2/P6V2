@@ -61,7 +61,6 @@ public class UI extends javax.swing.JFrame {
         ParallelSort1=new long[11];
         ParallelSort2=new long[11];
         ParallelSort3=new long[11];
-        getArray();
         createResultsFiles();
         getResultsArray();
         initComponents();
@@ -151,7 +150,7 @@ public class UI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void desordenadoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desordenadoButtonActionPerformed
-        System.out.println(Arrays.toString(getArrayDesordenado(type)));    
+        //System.out.println(Arrays.toString(getArrayDesordenado(type)));    
         createAndShowChart("Desordenados - tiempo total", getArrayDesordenado(type));
     }//GEN-LAST:event_desordenadoButtonActionPerformed
 
@@ -234,7 +233,7 @@ public class UI extends javax.swing.JFrame {
 
         // Crear la gráfica
         JFreeChart chart = ChartFactory.createXYLineChart(
-                "Tiempo de ejecución", "Cantidad de Elementos Ordenados", "Tiempo (en ns)", datos);
+                "Tiempo de ejecución - Ordenamiento", "Cantidad de Elementos Ordenados", "Tiempo (en ns)", datos);
 
         // Generar el panel donde se muestra la gráfica
         ChartPanel panel = new ChartPanel(chart);
@@ -265,7 +264,7 @@ public class UI extends javax.swing.JFrame {
         long endQuickSort2=System.nanoTime();
         long quickSort2 = (endQuickSort2-startQuickSort2);
         System.out.println("caso 2: completado!");
-        CA1.createArrayFileReverse(selectedArray, arrayInt);
+        CA1.createArrayFileReverse(selectedArray, arrayInt); 
         getArrayReverse();
         QuickSort2[arrayInt]=quickSort2;
         
@@ -286,6 +285,7 @@ public class UI extends javax.swing.JFrame {
         long mergeSort1 = (endmergesort1-startmergeSort1);
         System.out.println("caso 1: completado!");
         MergeSort1[arrayInt]=mergeSort1;
+        
         // caso 2: todo ya ordenado
         long startmergeSort2 = System.nanoTime();
         sorting.mergeSort(selectedArray, selectedArray.length);
@@ -295,6 +295,7 @@ public class UI extends javax.swing.JFrame {
         CA1.createArrayFileReverse(selectedArray, arrayInt);
         getArrayReverse();
         MergeSort2[arrayInt]=mergeSort2;
+        
         //caso 3: invertir orden
         long startmergeSort3=System.nanoTime();
         sorting.mergeSort(selectedArrayReverse, selectedArrayReverse.length);
@@ -312,6 +313,7 @@ public class UI extends javax.swing.JFrame {
         long arraySort1 = (endArraySort1-startArraySort1);
         System.out.println("caso 1: completado!");
         ArraySort1[arrayInt]=arraySort1;
+        
         // caso 2: todo ya ordenado
         long startArraySort2 = System.nanoTime();
         sorting.arraySort(selectedArray);
@@ -321,6 +323,7 @@ public class UI extends javax.swing.JFrame {
         CA1.createArrayFileReverse(selectedArray, arrayInt);
         getArrayReverse();
         ArraySort2[arrayInt]=arraySort2;
+        
         //caso 3: invertir orden
         long startArraySort3=System.nanoTime();
         sorting.arraySort(selectedArrayReverse);
@@ -364,7 +367,7 @@ public class UI extends javax.swing.JFrame {
     }
     
     public void createResultsFiles(){
-        
+         getArray();
         for(arrayInt=1;arrayInt<10;arrayInt++){
             execute();
            getArray();
